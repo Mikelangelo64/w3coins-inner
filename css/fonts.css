@@ -1,0 +1,16 @@
+/*font-family: 'Exo 2', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500&display=swap');
+
+/*font-family: 'Goudy Old Style', serif;*/
+@font-face {
+    font-family: 'Goudy Old Style';
+    src: url('../assets/fonts/GoudyOldStyleT-Bold.eot');
+    src: url('../assets/fonts/GoudyOldStyleT-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/GoudyOldStyleT-Bold.woff2') format('woff2'),
+        url('../assets/fonts/GoudyOldStyleT-Bold.woff') format('woff'),
+        url('../assets/fonts/GoudyOldStyleT-Bold.ttf') format('truetype'),
+        url('../assets/fonts/GoudyOldStyleT-Bold.svg#GoudyOldStyleT-Bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
