@@ -9,15 +9,23 @@
   
     @include viewport-desktop {
       --wrap: 9.531vw;
-  
+      --wrap-1: 9.531vw;
+      
+      @media (min-width: 1600px) {
+        --wrap-1: 18.541vw;
+      }
+
       @media (min-width: 1920px) {
         --wrap: calc((100vw - 1554px) / 2);
+        --wrap-1: calc((100vw - 1208px) / 2);
       }
     }
     @include viewport-tablet {
       --wrap: 4.765vw;
+      --wrap-1: 4.765vw;
     }
     @include viewport-phone {
       --wrap: 4.765vw;
+      --wrap-1: 4.765vw;
     }
 }

@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.body.style.setProperty('--vh', `${vh}px`);
 
   window.addEventListener('resize', () => {
-    if (vh === window.innerHeight * 0.01) {
+    if (vh === window.innerHeight * 0.01 || document.body.clientWidth < 900) {
       return;
     }
 
@@ -229,7 +229,9 @@ document.addEventListener('DOMContentLoaded', function () {
       removeEmptyCells(table);
     });
 
-  fixTable(tables);
+  if (document.body.clientWidth >= 900) {
+    fixTable(tables);
+  }
 
   window.addEventListener('resize', () => {
     if (vh !== window.innerHeight * 0.01) {
@@ -249,8 +251,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     lastColumnCount = columnCount;
-    fixTable(tables);
+    if (document.body.clientWidth >= 900) {
+      fixTable(tables);
+    }
   });
+
+  //light to rover when document ready
+  const rovers = document.querySelectorAll('.banner-img__rover');
+  rovers.length !== 0 &&
+    rovers.forEach((item) => {
+      const light = item.querySelector('#light');
+      if (!light) {
+        console.log('hui');
+        return;
+      }
+      //console.log(light.children);
+      Array.from(light.children).forEach((svg) => {
+        gsap
+          .timeline()
+          .from(svg, { opacity: 0 })
+          .to(svg, { opacity: 1, duration: 0, ease: 'none' })
+          .to(svg, { opacity: 0, duration: 0.1, delay: 1, ease: 'none' })
+          .to(svg, { opacity: 1, duration: 0.3, ease: 'none' })
+          .to(svg, { opacity: 0, duration: 0.1, ease: 'none' })
+          .to(svg, { opacity: 1, duration: 4, delay: 2, ease: 'none' });
+      });
+    });
 
   //swipers
   const separateSections = document.querySelectorAll('.separate');
@@ -288,12 +314,14 @@ document.addEventListener('DOMContentLoaded', function () {
           clickable: true,
           renderBullet: function (index, className) {
             return `
-              <button class="${className} _btn separate-bullet">
-                ${
-                  bulletContentArray[index]
-                    ? bulletContentArray[index].innerHTML
-                    : 'category'
-                }
+              <button class="${className} _btn separate-bullet ${
+              index % 2 !== 0 ? '_reverse' : ''
+            }">
+                  ${
+                    bulletContentArray[index]
+                      ? bulletContentArray[index].innerHTML
+                      : 'category'
+                  }
               </button>
             `;
           },

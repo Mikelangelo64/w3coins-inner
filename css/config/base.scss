@@ -63,71 +63,50 @@ body {
     }
 }
 
-@mixin button { 
+@mixin button {
     position: relative;
-    z-index: 0;
-
-    max-width: px-to-rem(250);
-    width: 100%;
-
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    border: 0;
-    border-radius: px-to-rem(50);
-    padding: px-to-rem(10) px-to-rem(30);
-    transition: background 0.3s ease;
+    background-image: -webkit-linear-gradient(90deg, var(--color-gradient-begin) 3.4%, var(--color-gradient-end) 50.87%, var(--color-gradient-begin) 100%);
+    background-size: 100% 200%;
+    animation: animate-gradient 4s linear infinite;
+    animation-play-state: paused;
 
-    font-size: px-to-rem(16);
-    line-height: 118.75%;
-    font-weight: 400;
-    
-    color: var(--color-blue-100);
-    background-color: var(--color-white);
+    overflow: hidden;
+    transition: color 0.3s ease;
+    color: var(--color-white);
 
-    // &::before {
-    //     content: '';
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     z-index: -2;
-    //     background: rgba(var(--color-text-secondary--rgb), 0.42);
-    //     opacity: 0.2;
-    //     filter: blur(13px);
-    //     border-radius: px-to-rem(50);
-    //     transition: opacity 0.3s ease;
-    //     padding: px-to-rem(7) px-to-rem(9);
-    // }
-    // &::after {
-    //     content: '';
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     z-index: -1;
-    //     background: var(--color-button-active);
-    //     border-radius: px-to-rem(50);
+    @include non-mobile-hover {
+        animation-play-state: running;
 
-    //     transform: scaleX(0);
-    //     transition: transform 0.3s ease;
-    //     transform-origin: 50% 0;
-    // }
+        .button__inner {
+            background-color: rgba(var(--color-blue-300--rgb), 0);
+        }
+    }
 
-    // &:hover,
-    // &:focus-visible {
+    &._reverse {
+        animation-direction: reverse;
+    }
 
-    //     &::before {
-    //         opacity: 0;
-    //     }
-    //     &::after {
-    //         transform: scaleX(1);
-    //         //background-color: var(--color-button-active);
-    //     }
-    // }  
+    .button__inner {
+        position: relative;
+        width: calc(100% - 2px);
+        height: calc(100% - 2px);
+        background-color: var(--color-blue-300);
+        transition: background 0.3s ease;
+
+        @include viewport-tablet-min {
+            border-radius: px-to-rem(50);
+            padding: px-to-rem(12);
+        }
+        
+        @include viewport-phone {
+            border-radius: px-to-rem(24);
+            padding: px-to-rem(10);
+        }
+    }
 }
 
 @mixin form-input {
@@ -332,3 +311,79 @@ body {
         background-position: 400%;
     }
 }
+
+@mixin light-animation() {
+    $random: random(2);
+  svg,
+  img {
+    @if $random > 1 {
+        animation-direction: reverse;
+    }
+  
+    //animation: move-stars linear infinite alternate;
+    animation-duration: 60s;
+  }
+}
+
+@keyframes move-stars {
+    0% {
+      transform: translate(0, 0);
+    }
+  
+    20% {
+      transform: translate(0%, 15%);
+    }
+  
+    40% {
+      transform: translate(5%, 15%);
+    }
+  
+    60% {
+      transform: translate(5%, 0%);
+    }
+  
+    80% {
+      transform: translate(0%, -15%);
+    }
+  
+    100% {
+      transform: translate(-5%, -15%);
+    }
+}
+
+@keyframes additional-move {
+    0% {
+        transform: translateY(0);
+    }
+
+    33% {
+        transform: translateY(25%);
+    }
+
+    66% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(25%);
+    }
+}
+
+@keyframes additional-move-2 {
+    0% {
+        transform: translateY(0);
+    }
+
+    33% {
+        transform: translateY(10%);
+    }
+
+    66% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(10%);
+    }
+}
+
