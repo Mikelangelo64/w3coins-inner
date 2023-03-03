@@ -974,13 +974,11 @@ html:not(.v-mobile) .menu-burger:hover::after {
 }
 .stars__item:nth-child(1) svg,
 .stars__item:nth-child(1) img {
-  animation-direction: reverse;
   -webkit-animation-duration: 60s;
           animation-duration: 60s;
 }
 .stars__item:nth-child(2) svg,
 .stars__item:nth-child(2) img {
-  animation-direction: reverse;
   -webkit-animation-duration: 60s;
           animation-duration: 60s;
 }
@@ -1001,11 +999,13 @@ html:not(.v-mobile) .menu-burger:hover::after {
 }
 .stars__item:nth-child(6) svg,
 .stars__item:nth-child(6) img {
+  animation-direction: reverse;
   -webkit-animation-duration: 60s;
           animation-duration: 60s;
 }
 .stars__item:nth-child(7) svg,
 .stars__item:nth-child(7) img {
+  animation-direction: reverse;
   -webkit-animation-duration: 60s;
           animation-duration: 60s;
 }
@@ -1276,14 +1276,8 @@ html:not(.v-mobile) .menu-burger:hover::after {
   height: auto;
 }
 .banner-img__rover svg #light > * {
-  -webkit-transition: opacity 0.3s ease;
-  transition: opacity 0.3s ease;
   opacity: 0;
 }
-.banner:hover .banner-img__rover svg #light > * {
-  opacity: 1;
-}
-
 .banner__container {
   position: relative;
   z-index: 2;
@@ -1351,6 +1345,10 @@ html:not(.v-mobile) .menu-burger:hover::after {
     font-size: 3.25rem;
   }
 }
+.banner._inner .banner__title {
+  font-family: "Exo 2", sans-serif;
+}
+
 @media (min-width: 900px) {
   .banner__subtitle {
     max-width: 58.823%;
@@ -2124,6 +2122,24 @@ html:not(.v-mobile) .separate-bullet:hover {
     padding-bottom: 1.5rem;
   }
 }
+@media (min-width: 1200px) {
+  .partners._inner {
+    margin-top: 6.875rem;
+    padding-bottom: 3.375rem;
+  }
+}
+@media (min-width: 900px) and (max-width: 1199px) {
+  .partners._inner {
+    margin-top: 5rem;
+    padding-bottom: 3.375rem;
+  }
+}
+@media (max-width: 899px) {
+  .partners._inner {
+    margin-top: 2rem;
+    padding-bottom: 1.5rem;
+  }
+}
 .partners__container {
   position: relative;
   z-index: 1;
@@ -2164,6 +2180,11 @@ html:not(.v-mobile) .separate-bullet:hover {
     font-size: 2.25rem;
   }
 }
+.partners._inner .partners__title {
+  /*font-family: $font-family;
+  font-weight: 400;*/
+}
+
 .partners__main {
   width: 100%;
 }
